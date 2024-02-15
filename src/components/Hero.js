@@ -12,11 +12,10 @@ const Hero = () => {
           Let's change it up a bit
         </h3>
         <p className="text-base md:text-lg text-slate-700 my-4 md:my-6">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis in
-          error repellat voluptatibus ad.
+        We are all different, but we all have that same spark that makes us light up.
         </p>
         <button className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
-          Find a class
+          Moodmaze for a better tommorrow
         </button>
       </div>
       <ShuffleGrid />

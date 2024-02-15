@@ -332,8 +332,8 @@ function Kanban(){
           <p className="text-neutral-400">
             View all your activity here
             </p>
+            <Board />
         </div>
-        <Board />
       </div>
       <Footer/>
     </div>
