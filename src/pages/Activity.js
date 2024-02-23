@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { FiPlus, FiTrash } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { FaFire } from "react-icons/fa";
-import Nav1 from "../components/Navbar";
-import Footer from "../components/Footer";
-function Kanban(){
+function Kanban() {
   const Board = () => {
     const [cards, setCards] = useState(DEFAULT_CARDS);
-  
+
     return (
-      <div className="flex h-full w-full gap-3 p-12">
+      <div className="flex h-auto w-full gap-3 p-12 flex-col md:flex-row">
         <Column
           title="Backlog"
           column="backlog"
@@ -42,83 +40,83 @@ function Kanban(){
       </div>
     );
   };
-  
+
   const Column = ({ title, headingColor, cards, column, setCards }) => {
     const [active, setActive] = useState(false);
-  
+
     const handleDragStart = (e, card) => {
       e.dataTransfer.setData("cardId", card.id);
     };
-  
+
     const handleDragEnd = (e) => {
       const cardId = e.dataTransfer.getData("cardId");
-  
+
       setActive(false);
       clearHighlights();
-  
+
       const indicators = getIndicators();
       const { element } = getNearestIndicator(e, indicators);
-  
+
       const before = element.dataset.before || "-1";
-  
+
       if (before !== cardId) {
         let copy = [...cards];
-  
+
         let cardToTransfer = copy.find((c) => c.id === cardId);
         if (!cardToTransfer) return;
         cardToTransfer = { ...cardToTransfer, column };
-  
+
         copy = copy.filter((c) => c.id !== cardId);
-  
+
         const moveToBack = before === "-1";
-  
+
         if (moveToBack) {
           copy.push(cardToTransfer);
         } else {
           const insertAtIndex = copy.findIndex((el) => el.id === before);
           if (insertAtIndex === undefined) return;
-  
+
           copy.splice(insertAtIndex, 0, cardToTransfer);
         }
-  
+
         setCards(copy);
       }
     };
-  
+
     const handleDragOver = (e) => {
       e.preventDefault();
       highlightIndicator(e);
-  
+
       setActive(true);
     };
-  
+
     const clearHighlights = (els) => {
       const indicators = els || getIndicators();
-  
+
       indicators.forEach((i) => {
         i.style.opacity = "0";
       });
     };
-  
+
     const highlightIndicator = (e) => {
       const indicators = getIndicators();
-  
+
       clearHighlights(indicators);
-  
+
       const el = getNearestIndicator(e, indicators);
-  
+
       el.element.style.opacity = "1";
     };
-  
+
     const getNearestIndicator = (e, indicators) => {
       const DISTANCE_OFFSET = 50;
-  
+
       const el = indicators.reduce(
         (closest, child) => {
           const box = child.getBoundingClientRect();
-  
+
           const offset = e.clientY - (box.top + DISTANCE_OFFSET);
-  
+
           if (offset < 0 && offset > closest.offset) {
             return { offset: offset, element: child };
           } else {
@@ -130,21 +128,21 @@ function Kanban(){
           element: indicators[indicators.length - 1],
         }
       );
-  
+
       return el;
     };
-  
+
     const getIndicators = () => {
       return Array.from(document.querySelectorAll(`[data-column="${column}"]`));
     };
-  
+
     const handleDragLeave = () => {
       clearHighlights();
       setActive(false);
     };
-  
+
     const filteredCards = cards.filter((c) => c.column === column);
-  
+
     return (
       <div className="w-56 shrink-0">
         <div className="mb-3 flex items-center justify-between">
@@ -170,7 +168,7 @@ function Kanban(){
       </div>
     );
   };
-  
+
   const Card = ({ title, id, column, handleDragStart }) => {
     return (
       <>
@@ -187,7 +185,7 @@ function Kanban(){
       </>
     );
   };
-  
+
   const DropIndicator = ({ beforeId, column }) => {
     return (
       <div
@@ -197,27 +195,27 @@ function Kanban(){
       />
     );
   };
-  
+
   const BurnBarrel = ({ setCards }) => {
     const [active, setActive] = useState(false);
-  
+
     const handleDragOver = (e) => {
       e.preventDefault();
       setActive(true);
     };
-  
+
     const handleDragLeave = () => {
       setActive(false);
     };
-  
+
     const handleDragEnd = (e) => {
       const cardId = e.dataTransfer.getData("cardId");
-  
+
       setCards((pv) => pv.filter((c) => c.id !== cardId));
-  
+
       setActive(false);
     };
-  
+
     return (
       <div
         onDrop={handleDragEnd}
@@ -233,27 +231,27 @@ function Kanban(){
       </div>
     );
   };
-  
+
   const AddCard = ({ column, setCards }) => {
     const [text, setText] = useState("");
     const [adding, setAdding] = useState(false);
-  
+
     const handleSubmit = (e) => {
       e.preventDefault();
-  
+
       if (!text.trim().length) return;
-  
+
       const newCard = {
         column,
         title: text.trim(),
         id: Math.random().toString(),
       };
-  
+
       setCards((pv) => [...pv, newCard]);
-  
+
       setAdding(false);
     };
-  
+
     return (
       <>
         {adding ? (
@@ -293,7 +291,7 @@ function Kanban(){
       </>
     );
   };
-  
+
   const DEFAULT_CARDS = [
     // BACKLOG
     { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
@@ -308,7 +306,7 @@ function Kanban(){
     },
     { title: "Postmortem for outage", id: "6", column: "todo" },
     { title: "Sync with product on Q3 roadmap", id: "7", column: "todo" },
-  
+
     // DOING
     {
       title: "Refactor context providers to use Zustand",
@@ -325,19 +323,15 @@ function Kanban(){
   ];
   return (
     <div className="h-screen w-full bg-neutral-900 text-neutral-50">
-      <Nav1/>
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold">Activity</h1>
-          <p className="text-neutral-400">
-            View all your activity here
-            </p>
-            <Board />
+          <p className="text-neutral-400">View all your activity here</p>
+          <Board />
         </div>
       </div>
-      <Footer/>
     </div>
   );
-};
+}
 
 export default Kanban;
