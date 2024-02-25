@@ -41,12 +41,12 @@ const Recognize = () => {
   };
 
   return (
-    <div className="flex w-full h-screen flex-col">
+    <div className="flex w-full h-screen flex-col mt-12">
       <div className="w-full justify-center my-8 text-center">
         <h1>Write something to check your mood</h1>
       </div>
       <div className="flex flex-col items-center mt-10">
-        <input
+        <textarea
           type="text"
           value={inputText}
           onChange={handleInputChange}
