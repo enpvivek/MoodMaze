@@ -42,10 +42,13 @@ const Emotiondetection = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <div className="max-w-lg w-full bg-white border rounded-lg shadow-md overflow-hidden">
-        <div className="flex items-center justify-between p-6 border-b">
+      <div className="max-w-lg w-full bg-white border rounded-lg shadow-md overflow-hidden mx-10">
+        <div className="flex items-center justify-between flex-col gap-4 sm:flex-row p-6 border-b">
           <h2 className="text-xl font-bold">Emotion Detection</h2>
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+          <div>
+            <label className="bg-[#1d232a] px-4 py-2 text-lg font-medium rounded-lg hover:opacity-70" htmlFor="imageFile">Choose File</label>
+            <input className="hidden" id="imageFile" type="file" accept="image/*" onChange={handleImageUpload} />
+          </div>
         </div>
         <div className="relative">
           {imagePreview && (
