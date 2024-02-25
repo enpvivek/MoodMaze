@@ -7,35 +7,37 @@ function Kanban() {
     const [cards, setCards] = useState(DEFAULT_CARDS);
 
     return (
-      <div className="flex h-auto w-full gap-3 p-12 flex-col md:flex-row">
-        <Column
-          title="Backlog"
-          column="backlog"
-          headingColor="text-neutral-500"
-          cards={cards}
-          setCards={setCards}
-        />
-        <Column
-          title="TODO"
-          column="todo"
-          headingColor="text-yellow-200"
-          cards={cards}
-          setCards={setCards}
-        />
-        <Column
-          title="In progress"
-          column="doing"
-          headingColor="text-blue-200"
-          cards={cards}
-          setCards={setCards}
-        />
-        <Column
-          title="Complete"
-          column="done"
-          headingColor="text-emerald-200"
-          cards={cards}
-          setCards={setCards}
-        />
+      <div className="flex w-full gap-4 justify-center items-center xl:items-start py-12 px-4 flex-col md:flex-row">
+        <div className="flex justify-center items-start gap-4 flex-wrap">
+          <Column
+            title="Backlog"
+            column="backlog"
+            headingColor="text-neutral-500"
+            cards={cards}
+            setCards={setCards}
+          />
+          <Column
+            title="TODO"
+            column="todo"
+            headingColor="text-yellow-200"
+            cards={cards}
+            setCards={setCards}
+          />
+          <Column
+            title="In progress"
+            column="doing"
+            headingColor="text-blue-200"
+            cards={cards}
+            setCards={setCards}
+          />
+          <Column
+            title="Complete"
+            column="done"
+            headingColor="text-emerald-200"
+            cards={cards}
+            setCards={setCards}
+          />
+        </div>
         <BurnBarrel setCards={setCards} />
       </div>
     );
@@ -155,9 +157,8 @@ function Kanban() {
           onDrop={handleDragEnd}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
-          className={`h-full w-full transition-colors ${
-            active ? "bg-neutral-800/50" : "bg-neutral-800/0"
-          }`}
+          className={`h-full w-full transition-colors ${active ? "bg-neutral-800/50" : "bg-neutral-800/0"
+            }`}
         >
           {filteredCards.map((c) => {
             return <Card key={c.id} {...c} handleDragStart={handleDragStart} />;
@@ -221,11 +222,10 @@ function Kanban() {
         onDrop={handleDragEnd}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        className={`mt-10 grid h-56 w-56 shrink-0 place-content-center rounded border text-3xl ${
-          active
-            ? "border-red-800 bg-red-800/20 text-red-500"
-            : "border-neutral-500 bg-neutral-500/20 text-neutral-500"
-        }`}
+        className={`mt-10 grid h-56 w-56 shrink-0 place-content-center rounded border text-3xl ${active
+          ? "border-red-800 bg-red-800/20 text-red-500"
+          : "border-neutral-500 bg-neutral-500/20 text-neutral-500"
+          }`}
       >
         {active ? <FaFire className="animate-bounce" /> : <FiTrash />}
       </div>
@@ -322,9 +322,9 @@ function Kanban() {
     },
   ];
   return (
-    <div className="h-screen w-full bg-neutral-900 text-neutral-50">
+    <div className="w-full bg-neutral-900 text-neutral-50">
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-4 mt-8">
           <h1 className="text-4xl font-bold">Activity</h1>
           <p className="text-neutral-400">View all your activity here</p>
           <Board />
