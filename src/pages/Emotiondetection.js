@@ -41,7 +41,7 @@ const Emotiondetection = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center h-screen bg-[#171717]">
       <div className="max-w-lg w-full bg-white border rounded-lg shadow-md overflow-hidden mx-10">
         <div className="flex items-center justify-between flex-col gap-4 sm:flex-row p-6 border-b">
           <h2 className="text-xl font-bold">Emotion Detection</h2>
