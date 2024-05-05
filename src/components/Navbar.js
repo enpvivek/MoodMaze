@@ -8,6 +8,7 @@ const navigation = [
   { name: "Activity Manager", href: "/Activity", current: true },
   { name: "EmotionDetection", href: "/Emotion", current: true },
   { name: "Recognize", href: "/Recognize", current: true },
+  { name: "Detect Autism", href: "DetectAutism", current: true },
 ];
 
 function classNames(...classes) {

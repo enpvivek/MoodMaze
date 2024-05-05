@@ -5,6 +5,7 @@ import Kanban from "./pages/Activity";
 import Recognize from "./pages/Recognize";
 import Footer from "./components/Footer";
 import Emotiondetection from "./pages/Emotiondetection";
+import AutismDetection from "./pages/AutismDetection";
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
         <Route path="/Activity" element={<Kanban />} />
         <Route path="/Recognize" element={<Recognize />} />
         <Route path="/Emotion" element={<Emotiondetection />} />
+        <Route path="DetectAutism" element={<AutismDetection />} />
       </Routes>
       <Footer />
     </div>
