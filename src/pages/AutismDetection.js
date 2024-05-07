@@ -370,7 +370,7 @@ const AutismDetection = () => {
       {responseData && (
         <div className="flex flex-col justify-center border-white border-2 my-8 p-8">
           <p>{responseData.message}</p>
-          <p>Result: {responseData.percentage}%</p>
+          <p>Result: {responseData.percentage}*100%</p>
         </div>
       )}
     </div>
