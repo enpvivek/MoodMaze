@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
 const AutismDetection = () => {
+
+  //this response Data will store the api response, display it wherever u want
+  const [responseData, setResponseData] = useState({})
+
   const [scores, setScores] = useState({
     A1_Score: 0,
     A2_Score: 0,
@@ -59,6 +63,7 @@ const AutismDetection = () => {
       .then((data) => {
         // Print the response
         console.log(data);
+        setResponseData(data)
       })
       .catch((error) => {
         // Handle the exception
