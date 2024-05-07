@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 const AutismDetection = () => {
-
   //this response Data will store the api response, display it wherever u want
-  const [responseData, setResponseData] = useState({})
+  const [responseData, setResponseData] = useState({});
 
   const [scores, setScores] = useState({
     A1_Score: 0,
@@ -16,7 +15,7 @@ const AutismDetection = () => {
     A8_Score: 0,
     A9_Score: 0,
     A10_Score: 0,
-    age: "",
+    age: 0,
     gender: "",
     ethnicity: "",
     jundice: "",
@@ -26,22 +25,31 @@ const AutismDetection = () => {
     result: 9,
     age_desc: "18 and more",
     relation: "",
-    class_asd: "", // Participant classification
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "A1_Score" || name === "A2_Score" || name === "A3_Score" || name === "A4_Score" || name === "A5_Score" || name === "A6_Score" || name === "A7_Score" || name === "A8_Score" || name === "A9_Score" || name === "A10_Score") {
+    if (
+      name === "A1_Score" ||
+      name === "A2_Score" ||
+      name === "A3_Score" ||
+      name === "A4_Score" ||
+      name === "A5_Score" ||
+      name === "A6_Score" ||
+      name === "A7_Score" ||
+      name === "A8_Score" ||
+      name === "A9_Score" ||
+      name === "A10_Score"
+    ) {
       setScores((prevScores) => ({
         ...prevScores,
         [name]: value === "yes" ? 1 : 0,
       }));
-    }
-    else {
-      setScores(prev => ({
+    } else {
+      setScores((prev) => ({
         ...prev,
-        [name]: value
-      }))
+        [name]: value,
+      }));
     }
   };
 
@@ -71,7 +79,7 @@ const AutismDetection = () => {
       .then((data) => {
         // Print the response
         console.log(data);
-        setResponseData(data)
+        setResponseData(data);
       })
       .catch((error) => {
         // Handle the exception
@@ -87,7 +95,11 @@ const AutismDetection = () => {
         <label>
           Question 1: I often notice small sounds when others do not
         </label>
-        <select value={scores.A1_Score === 0 ? "no" : "yes"} name="A1_Score" onChange={handleChange}>
+        <select
+          value={scores.A1_Score === 0 ? "no" : "yes"}
+          name="A1_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -97,7 +109,11 @@ const AutismDetection = () => {
           Question 2: I usually concentrate more on the whole picture, rather
           than the small details
         </label>
-        <select value={scores.A2_Score === 0 ? "no" : "yes"} name="A2_Score" onChange={handleChange}>
+        <select
+          value={scores.A2_Score === 0 ? "no" : "yes"}
+          name="A2_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -106,7 +122,11 @@ const AutismDetection = () => {
         <label>
           Question 3: I find it easy to do more than one thing at once
         </label>
-        <select value={scores.A3_Score === 0 ? "no" : "yes"} name="A3_Score" onChange={handleChange}>
+        <select
+          value={scores.A3_Score === 0 ? "no" : "yes"}
+          name="A3_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -116,7 +136,11 @@ const AutismDetection = () => {
           Question 4: If there is an interruption, I can switch back to what I
           was doing very quickly
         </label>
-        <select value={scores.A4_Score === 0 ? "no" : "yes"} name="A4_Score" onChange={handleChange}>
+        <select
+          value={scores.A4_Score === 0 ? "no" : "yes"}
+          name="A4_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -126,7 +150,11 @@ const AutismDetection = () => {
           Question 5: I find it easy to ‘read between the lines’ when someone is
           talking to me
         </label>
-        <select value={scores.A5_Score === 0 ? "no" : "yes"} name="A5_Score" onChange={handleChange}>
+        <select
+          value={scores.A5_Score === 0 ? "no" : "yes"}
+          name="A5_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -136,7 +164,11 @@ const AutismDetection = () => {
           Question 6: I know how to tell if someone listening to me is getting
           bored
         </label>
-        <select value={scores.A6_Score === 0 ? "no" : "yes"} name="A6_Score" onChange={handleChange}>
+        <select
+          value={scores.A6_Score === 0 ? "no" : "yes"}
+          name="A6_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -146,7 +178,11 @@ const AutismDetection = () => {
           Question 7: When I’m reading a story I find it difficult to work out
           the characters’ intentions
         </label>
-        <select value={scores.A7_Score === 0 ? "no" : "yes"} name="A7_Score" onChange={handleChange}>
+        <select
+          value={scores.A7_Score === 0 ? "no" : "yes"}
+          name="A7_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -156,7 +192,11 @@ const AutismDetection = () => {
           Question 8: I like to collect information about categories of things
           (e.g. types of car, types of bird, types of train, types of plant etc)
         </label>
-        <select value={scores.A8_Score === 0 ? "no" : "yes"} name="A8_Score" onChange={handleChange}>
+        <select
+          value={scores.A8_Score === 0 ? "no" : "yes"}
+          name="A8_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -166,7 +206,11 @@ const AutismDetection = () => {
           Question 9: I find it easy to work out what someone is thinking or
           feeling just by looking at their face
         </label>
-        <select value={scores.A9_Score === 0 ? "no" : "yes"} name="A9_Score" onChange={handleChange}>
+        <select
+          value={scores.A9_Score === 0 ? "no" : "yes"}
+          name="A9_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -175,7 +219,11 @@ const AutismDetection = () => {
         <label>
           Question 10: I find it difficult to work out people’s intentions
         </label>
-        <select value={scores.A10_Score === 0 ? "no" : "yes"} name="A10_Score" onChange={handleChange}>
+        <select
+          value={scores.A10_Score === 0 ? "no" : "yes"}
+          name="A10_Score"
+          onChange={handleChange}
+        >
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -184,20 +232,33 @@ const AutismDetection = () => {
       {/* Additional Fields */}
       <div>
         <label>Age of participant</label>
-        <input value={scores.age} type="number" name="age" onChange={handleChange} />
+        <input
+          value={scores.age}
+          type="number"
+          name="age"
+          onChange={handleChange}
+        />
       </div>
       <div>
         <label>Gender</label>
         <select value={scores.gender} name="gender" onChange={handleChange}>
-          <option value={""}><i>None</i></option>
+          <option value={""}>
+            <i>None</i>
+          </option>
           <option value="m">Male</option>
           <option value="f">Female</option>
         </select>
       </div>
       <div>
         <label>Ethnicity</label>
-        <select value={scores.ethnicity} name="ethnicity" onChange={handleChange}>
-          <option value={""}><i>None</i></option>
+        <select
+          value={scores.ethnicity}
+          name="ethnicity"
+          onChange={handleChange}
+        >
+          <option value={""}>
+            <i>None</i>
+          </option>
           <option value="White-European">White-European</option>
           <option value="Latino">Latino</option>
           <option value="?">Unknown</option>
@@ -209,13 +270,15 @@ const AutismDetection = () => {
           <option value="South Asian">South Asian</option>
           <option value="Hispanic">Hispanic</option>
           <option value="Turkish">Turkish</option>
-          <option value="others">Other</option>
+          <option value="Others">Other</option>
         </select>
       </div>
       <div>
         <label>Jaundice</label>
         <select value={scores.jundice} name="jundice" onChange={handleChange}>
-          <option value={""}><i>None</i></option>
+          <option value={""}>
+            <i>None</i>
+          </option>
           <option value="no">No</option>
           <option value="yes">Yes</option>
         </select>
@@ -223,19 +286,32 @@ const AutismDetection = () => {
       <div>
         <label>Autism</label>
         <select value={scores.austim} name="austim" onChange={handleChange}>
-          <option value={""}><i>None</i></option>
+          <option value={""}>
+            <i>None</i>
+          </option>
           <option value="no">No</option>
           <option value="yes">Yes</option>
         </select>
       </div>
       <div>
         <label>Country of Residence</label>
-        <input value={scores.contry_of_res} type="text" name="contry_of_res" onChange={handleChange} />
+        <input
+          value={scores.contry_of_res}
+          type="text"
+          name="contry_of_res"
+          onChange={handleChange}
+        />
       </div>
       <div>
         <label>Used App Before</label>
-        <select value={scores.used_app_before} name="used_app_before" onChange={handleChange}>
-          <option value={""}><i>None</i></option>
+        <select
+          value={scores.used_app_before}
+          name="used_app_before"
+          onChange={handleChange}
+        >
+          <option value={""}>
+            <i>None</i>
+          </option>
           <option value="no">No</option>
           <option value="yes">Yes</option>
         </select>
@@ -243,14 +319,18 @@ const AutismDetection = () => {
       <div>
         <label>Age Description</label>
         <select value={scores.age_desc} name="age_desc" onChange={handleChange}>
-          <option value={""}><i>None</i></option>
+          <option value={""}>
+            <i>None</i>
+          </option>
           <option value="18 and more">18 and more</option>
         </select>
       </div>
       <div>
         <label>Relation</label>
         <select value={scores.relation} name="relation" onChange={handleChange}>
-          <option value={""}><i>None</i></option>
+          <option value={""}>
+            <i>None</i>
+          </option>
           <option value="Self">Self</option>
           <option value="Parent">Parent</option>
           <option value="?">Unknown</option>
@@ -261,15 +341,6 @@ const AutismDetection = () => {
           <option value="Others">Others</option>
         </select>
       </div>
-      <div>
-        <label>Participant Classification</label>
-        <select value={scores.class_asd} name="class_asd" onChange={handleChange}>
-          <option><i>None</i></option>
-          <option value="NO">NO</option>
-          <option value="YES">YES</option>
-        </select>
-      </div>
-
       <button type="submit">Submit</button>
     </form>
   );
